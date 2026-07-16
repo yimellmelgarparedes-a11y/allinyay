@@ -694,7 +694,7 @@ body {
     }
 }
 /* ==========================================
-   SELECTOR DE AVATARES RÁPIDOS (PANEL ADMIN)
+   SELECTOR DE AVATARES RÁPIDOS Y SUBIDA DE FOTO
    ========================================== */
 .avatar-field-container {
     display: flex;
@@ -702,32 +702,21 @@ body {
     gap: 5px;
 }
 
-.avatar-input-wrapper input[readonly] {
-    background-color: #F9F6FC;
-    border: 1.5px solid #E4D9F5;
-    color: #4A3E3D;
-    font-weight: bold;
-    text-align: center;
-    font-size: 1.2rem;
-    cursor: default;
-}
-
 .avatar-selector-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
-    margin-top: 8px;
+    gap: 6px;
     background-color: #FAF8FC;
-    padding: 10px;
+    padding: 8px;
     border-radius: 10px;
     border: 1px dashed var(--primary-light);
-    max-height: 150px;
+    max-height: 140px;
     overflow-y: auto;
 }
 
 .avatar-option {
     font-size: 1.6rem;
-    cursor: pointer;
+    cursor: pointer !important;
     padding: 6px;
     border-radius: 8px;
     transition: all 0.2s ease-in-out;
@@ -735,8 +724,9 @@ body {
     align-items: center;
     justify-content: center;
     background-color: var(--white);
-    border: 1px solid rgba(142, 122, 181, 0.1);
+    border: 1px solid rgba(142, 122, 181, 0.2);
     user-select: none;
+    pointer-events: auto !important; /* Fuerza a recibir clics */
 }
 
 .avatar-option:hover {
@@ -745,8 +735,8 @@ body {
 }
 
 .avatar-option.selected {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
     border-color: var(--primary-dark);
-    box-shadow: 0 2px 6px rgba(142, 122, 181, 0.3);
     transform: scale(1.1);
+    box-shadow: 0 2px 6px rgba(142, 122, 181, 0.3);
 }
