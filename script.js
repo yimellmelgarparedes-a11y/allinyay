@@ -166,6 +166,12 @@ if (loginForm) {
     });
 }
 
+if (btnAccesoSantuario) {
+    btnAccesoSantuario.addEventListener('click', () => {
+        loginModal.style.display = 'flex';
+    });
+}
+
 // ==========================================
 // 2. PANEL DE ADMINISTRACIÓN (DUEÑO DE ALLINYAY)
 // ==========================================
@@ -184,7 +190,7 @@ if (closeAdminModal) {
     });
 }
 
-// Validar clave de administrador (ej: adminallinyay)
+// Validar clave de administrador (adminallinyay)
 if (adminLoginForm) {
     adminLoginForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -310,7 +316,6 @@ async function renderMemories(filterType = 'todos') {
                     <span style="font-size:0.75rem; color:#888;">${recuerdo.fecha || 'Reciente'}</span>
                 </div>
                 
-                <!-- Sección de Comentarios (Muro familiar) -->
                 <div class="comments-section" style="margin-top:10px; border-top:1px solid #eee; padding-top:10px;">
                     <button class="btn-comment-toggle" style="background:none; border:none; color:#8E7AB5; font-size:0.8rem; cursor:pointer; font-weight:bold; padding:0;"><i class="fa-solid fa-comments"></i> Familia y Comentarios (<span class="comment-count">0</span>)</button>
                     <div class="comments-collapsible" style="display:none; margin-top:10px;">
@@ -462,7 +467,7 @@ if (memoryForm) {
         e.preventDefault();
         
         btnSubmitMemory.disabled = true;
-        btnSubmitMemory.innerText = "Procesando...";
+        btnSubmitMemory.innerText = "Subiendo archivo...";
 
         const type = memoryTypeSelect.value;
         const title = document.getElementById('title').value;
@@ -517,12 +522,14 @@ if (memoryForm) {
                         santuario_id: currentSantuarioId
                     }]);
 
-                if (insertError) throw insertError;
+                if (insertError) {
+                     throw insertError;
+                }
                 
                 alert("¡Recuerdo guardado con éxito!");
 
             } catch (err) {
-                alert(`Error al guardar recuerdo: ${err.message}`);
+                alert(`Hubo un error al subir el recuerdo. Asegúrate de haber creado el bucket 'archivos-santuario' como público en tu Storage de Supabase.`);
                 console.error(err);
             }
         }
