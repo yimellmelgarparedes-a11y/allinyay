@@ -4,71 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALLINYAY - Amigurumi con Alma</title>
-    <link rel="stylesheet" href="styles.css?v=4.0">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <header class="navbar">
         <div class="logo">
             <i class="fa-solid fa-heart-pulse"></i> 
-            <div><h1>ALLINYAY</h1><span>Amigurumi con alma</span></div>
+            <div><h1>ALLINYAY</h1><p>Amigurumi con alma</p></div>
         </div>
-        <nav class="nav-links">
-            <a href="#inicio">Inicio</a>
-            <button class="btn-admin-nav" id="btn-open-admin"><i class="fa-solid fa-user-gear"></i> Panel Admin</button>
+        <nav>
+            <button id="btn-open-admin"><i class="fa-solid fa-user-gear"></i> Admin</button>
+            <button id="btn-acceso-santuario"><i class="fa-solid fa-lock"></i> Entrar</button>
         </nav>
-        <button class="btn-secondary" id="btn-acceso-santuario"><i class="fa-solid fa-lock"></i> Entrar al Santuario</button>
     </header>
 
-    <main class="main-container">
-        <section class="left-column" id="inicio">
-            <h2>Honramos recuerdos, <span style="color:#8E7AB5;">tejemos eternidad. ♡</span></h2>
-            <p>Amigurumis personalizados con un Santuario Digital privado para guardar los recuerdos que nunca quieres olvidar.</p>
-        </section>
-
-        <section class="right-column" id="santuario">
-            <div class="santuario-box">
-                <div class="santuario-header">
-                    <div id="santuario-avatar-container" style="font-size: 50px;">🔒</div>
-                    <div><h3 id="santuario-display-title">Santuario Privado</h3></div>
-                    <button class="btn-primary" id="btn-add-memory" style="display:none;"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="santuario-body" id="santuario-body-content" style="opacity:0.2; pointer-events:none;">
-                    <div class="santuario-content">
-                        <div class="memories-grid" id="memories-container"></div>
-                    </div>
-                </div>
+    <main class="main-content">
+        <section class="card-display">
+            <div id="santuario-avatar-container" class="avatar-view">🔒</div>
+            <h2 id="santuario-display-title">Santuario Privado</h2>
+            <div id="santuario-body-content" class="content-body">
+                <div id="memories-container"></div>
             </div>
         </section>
     </main>
 
-    <!-- Modales -->
-    <div id="login-modal" class="modal"><div class="modal-content"><form id="login-form"><input type="password" id="login-password" placeholder="Código del Amigurumi" required><button type="submit">Ingresar</button></form></div></div>
-    
     <div id="admin-modal" class="modal">
-        <div class="modal-content admin-modal-content">
-            <div id="admin-login-section"><form id="admin-login-form"><input type="password" id="admin-password" placeholder="Clave Admin" required><button type="submit">Validar</button></form></div>
-            <div id="admin-dashboard-section" style="display:none;">
-                <form id="create-santuario-form">
+        <div class="modal-box">
+            <div id="admin-login-view">
+                <input type="password" id="admin-password" placeholder="Clave Admin">
+                <button onclick="validarAdmin()">Validar</button>
+            </div>
+            <div id="admin-form-view" style="display:none;">
+                <form id="form-nuevo-santuario">
                     <input type="text" id="admin-santuario-id" placeholder="Código ID" required>
                     <input type="text" id="admin-nombre" placeholder="Nombre" required>
-                    <label>Elige un Avatar:</label>
-                    <div id="avatar-selector" style="display:flex; gap:10px; margin:10px 0;">
-                        <button type="button" onclick="selectAvatar('👴')" class="avatar-btn">👴</button>
-                        <button type="button" onclick="selectAvatar('👵')" class="avatar-btn">👵</button>
-                        <button type="button" onclick="selectAvatar('👶')" class="avatar-btn">👶</button>
+                    <div class="avatar-picker">
+                        <button type="button" onclick="setAvatar('👴')">👴</button>
+                        <button type="button" onclick="setAvatar('👵')">👵</button>
+                        <button type="button" onclick="setAvatar('👶')">👶</button>
                     </div>
-                    <label>O sube una foto:</label>
                     <input type="file" id="admin-avatar-file" accept="image/*">
                     <input type="hidden" id="selected-avatar-val" value="👴">
-                    <button type="submit">Crear Santuario</button>
+                    <button type="submit">Guardar Santuario</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <script>function selectAvatar(icon) { document.getElementById('selected-avatar-val').value = icon; }</script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
