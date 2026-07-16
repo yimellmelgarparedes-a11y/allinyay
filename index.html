@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALLINYAY - Amigurumi con Alma</title>
+    <link rel="stylesheet" href="styles.css?v=2.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-heart-pulse"></i> 
+            <div>
+                <h1>ALLINYAY</h1>
+                <span>Amigurumi con alma</span>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#nosotros">Sobre Nosotros</a>
+            <a href="#santuario">Santuario Digital</a>
+            <button class="btn-admin-nav" id="btn-open-admin"><i class="fa-solid fa-user-gear"></i> Panel Admin</button>
+        </nav>
+        <div class="nav-buttons">
+            <button class="btn-secondary" id="btn-acceso-santuario"><i class="fa-solid fa-lock"></i> Acceso a tu Santuario</button>
+            <a href="https://wa.me/51966163513?text=Hola%20ALLINYAY,%20quiero%20más%20información%20sobre%20los%20amigurumis%20con%20santuario%20digital." target="_blank" class="btn-whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp: 966163513
+            </a>
+        </div>
+    </header>
+
+    <main class="main-container">
+        
+        <section class="left-column" id="inicio">
+            <div class="hero-text">
+                <h2>Honramos recuerdos, <br><span class="highlight">tejemos eternidad. ♡</span></h2>
+                <p>ALLINYAY crea amigurumis personalizados que conectan el amor, la memoria y la tecnología. Cada pieza incluye un Santuario Digital privado para que guardes y compartas los recuerdos que nunca quieres olvidar.</p>
+                <div class="hero-actions">
+                    <a href="https://wa.me/51966163513?text=Hola%20ALLINYAY,%20deseo%20cotizar%20un%20amigurumi%20personalizado." target="_blank" class="btn-primary-link"><i class="fa-solid fa-gift"></i> Conoce nuestros Amigurumis</a>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-heart"></i>
+                    <h3>Hecho con Amor</h3>
+                    <p>Cada amigurumi es tejido a mano con dedicación y respeto.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-qrcode"></i>
+                    <h3>Santuario Digital</h3>
+                    <p>Tu código QR te da acceso a un espacio privado de recuerdos.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-leaf"></i>
+                    <h3>Sostenible</h3>
+                    <p>Usamos materiales responsables y promovemos la economía circular.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Privado y Seguro</h3>
+                    <p>Solo las personas con tu código QR pueden ver tus recuerdos.</p>
+                </div>
+            </div>
+
+            <div class="about-summary" id="nosotros">
+                <div class="about-card">
+                    <h3>¿Qué es ALLINYAY?</h3>
+                    <p>Somos un emprendimiento peruano que combina arte, memoria y tecnología para ayudarte a mantener vivo el amor de quienes ya no están físicamente con nosotros.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Misión</h3>
+                    <p>Crear experiencias significativas que permitan a las personas honrar a sus seres queridos a través de amigurumis personalizados y un santuario digital privado.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Visión</h3>
+                    <p>Ser la marca líder en Latinoamérica en memoriales personalizados digitales y artesanales, transformando el duelo en conexión y amor eterno.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="right-column" id="santuario">
+            <div class="santuario-box">
+                
+                <div class="santuario-header">
+                    <div class="santuario-title">
+                        <i class="fa-solid fa-lock" id="santuario-lock-icon" style="color: #4A3E3D;"></i>
+                        <div>
+                            <h3 id="santuario-display-title">Santuario Privado</h3>
+                            <p id="santuario-display-subtitle">Por favor, inicia sesión para ver este santuario.</p>
+                        </div>
+                    </div>
+                    <button class="btn-primary" id="btn-add-memory" style="display: none;"><i class="fa-solid fa-plus"></i> Añadir Recuerdo</button>
+                </div>
+
+                <div class="santuario-body" id="santuario-body-content" style="opacity: 0.2; pointer-events: none;">
+                    <aside class="santuario-sidebar">
+                        <div class="profile-area">
+                            <div class="avatar" id="santuario-avatar">🔒</div>
+                            <h4 id="santuario-profile-name">Santuario Protegido</h4>
+                        </div>
+                        <nav class="sidebar-nav">
+                            <button class="active" id="btn-filter-todos"><i class="fa-solid fa-house"></i> Inicio</button>
+                            <button id="btn-filter-foto"><i class="fa-solid fa-image"></i> Fotos</button>
+                            <button id="btn-filter-video"><i class="fa-solid fa-video"></i> Videos</button>
+                            <button id="btn-filter-audio"><i class="fa-solid fa-volume-high"></i> Audios</button>
+                            <button id="btn-filter-mensaje"><i class="fa-solid fa-envelope"></i> Mensajes</button>
+                        </nav>
+                        
+                        <div class="qr-section">
+                            <p>Código QR de este Santuario</p>
+                            <div class="qr-code" id="santuario-qr-container">
+                                <i class="fa-solid fa-qrcode"></i>
+                            </div>
+                            <span>Escanea para acceder directamente a este espacio.</span>
+                        </div>
+                    </aside>
+
+                    <main class="santuario-content">
+                        <div class="emotional-banner">
+                            <p id="santuario-phrase">"Los recuerdos que guardamos en el corazón, nunca se pierden. ♡"</p>
+                        </div>
+
+                        <div class="memories-section">
+                            <h3>Últimos recuerdos</h3>
+                            <div class="memories-grid" id="memories-container">
+                                </div>
+                        </div>
+
+                        <div class="santuario-footer-info">
+                            <div class="dates-box">
+                                <h4>Fechas importantes</h4>
+                                <ul id="santuario-dates">
+                                    <li><i class="fa-solid fa-calendar"></i> Inicia sesión para ver fechas</li>
+                                </ul>
+                            </div>
+                            <div class="family-box">
+                                <h4>Familia con acceso</h4>
+                                <ul id="santuario-family">
+                                    <li>👤 Acceso restringido</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-login-modal">&times;</span>
+            <h3>Ingresar al Santuario Digital</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 15px; color: #666;">Introduce el código de acceso exclusivo que viene con tu amigurumi ALLINYAY.</p>
+            <form id="login-form">
+                <label for="login-password">Código o Contraseña del Amigurumi:</label>
+                <input type="password" id="login-password" placeholder="Ej. juanita123" required>
+                <button type="submit" class="btn-primary">Ingresar al Santuario</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="memory-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h3>Añadir Nuevo Recuerdo</h3>
+            <form id="memory-form">
+                <label for="type">Tipo de recuerdo:</label>
+                <select id="type" required>
+                    <option value="foto">Foto (Sube archivo)</option>
+                    <option value="video">Video (Sube archivo)</option>
+                    <option value="audio">Audio (Sube archivo)</option>
+                    <option value="mensaje">Mensaje (Solo texto)</option>
+                </select>
+
+                <label for="title">Título:</label>
+                <input type="text" id="title" placeholder="Ej. Almuerzo del domingo" required>
+
+                <div id="file-upload-group">
+                    <label for="file-input" id="label-file">Seleccionar archivo:</label>
+                    <input type="file" id="file-input" accept="image/*,video/*,audio/*">
+                </div>
+
+                <div id="text-message-group" style="display: none;">
+                    <label for="content">Escribe tu pensamiento o mensaje:</label>
+                    <textarea id="content" placeholder="Escribe aquí unas palabras bonitas..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary" id="btn-submit-memory">Subir al Santuario</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="admin-modal">
+        <div class="modal-content admin-modal-content">
+            <span class="close-btn" id="close-admin-modal">&times;</span>
+            <h3>Panel de Control - ALLINYAY</h3>
+            
+            <div id="admin-login-section">
+                <p>Por favor, introduce la clave de administrador para continuar.</p>
+                <form id="admin-login-form">
+                    <input type="password" id="admin-password" placeholder="Clave de administrador" required>
+                    <button type="submit" class="btn-primary">Validar</button>
+                </form>
+            </div>
+
+            <div id="admin-dashboard-section" style="display: none;">
+                <h4>Crear un nuevo Amigurumi con Santuario</h4>
+                <form id="create-santuario-form">
+                    <div class="form-row">
+                        <div>
+                            <label for="admin-santuario-id">Código único (ID):</label>
+                            <input type="text" id="admin-santuario-id" placeholder="Ej. juanita123" required>
+                        </div>
+                        <div>
+                            <label for="admin-nombre">Nombre del Homenajeado:</label>
+                            <input type="text" id="admin-nombre" placeholder="Ej. Juanita (Abuelita)" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label for="admin-avatar">Avatar (Emoji):</label>
+                            <input type="text" id="admin-avatar" placeholder="Ej. 👵" required>
+                        </div>
+                        <div>
+                            <label for="admin-frase">Frase especial:</label>
+                            <input type="text" id="admin-frase" placeholder="Ej. Te amamos siempre..." required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label for="admin-fechas">Fechas Importantes (separadas por comas):</label>
+                            <input type="text" id="admin-fechas" placeholder="Ej. 15 Ago - Nacimiento, 02 Nov - Memorial" required>
+                        </div>
+                        <div>
+                            <label for="admin-familia">Familia Autorizada (separadas por comas):</label>
+                            <input type="text" id="admin-familia" placeholder="Ej. María (Hija), Carlos (Nieto)" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Registrar y Generar QR</button>
+                </form>
+
+                <div id="qr-result-section" style="display: none; text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+                    <h5>¡Santuario Creado con Éxito!</h5>
+                    <p>Enlace de acceso: <span id="admin-generated-link" style="font-weight: bold; color: #8E7AB5;"></span></p>
+                    <div id="admin-qrcode" style="display: flex; justify-content: center; margin: 15px 0;"></div>
+                    <p style="font-size: 0.85rem; color: #666;">Guarda o imprime este código QR para colocarlo en la etiqueta del Amigurumi físico.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="lightbox-visor" class="lightbox">
+        <span class="lightbox-close" id="close-lightbox">&times;</span>
+        <div class="lightbox-content-wrapper">
+            <img id="lightbox-img" src="" style="display: none;">
+            <video id="lightbox-video" src="" controls style="display: none;"></video>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-badge"><i class="fa-solid fa-headset"></i> Atención personalizada</div>
+        <div class="footer-badge"><i class="fa-solid fa-truck"></i> Envíos a todo el Perú</div>
+        <div class="footer-badge"><i class="fa-solid fa-hands-holding"></i> Experiencia significativa</div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
