@@ -221,12 +221,20 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="avatar-field-container">
-                            <label for="admin-avatar">Avatar del Homenajeado:</label>
-                            <div class="avatar-input-wrapper">
-                                <input type="text" id="admin-avatar" placeholder="Selecciona un personaje abajo..." required readonly>
-                            </div>
+                        <div class="avatar-field-container" style="width: 100%;">
+                            <label>Avatar / Foto de Perfil del Homenajeado:</label>
                             
+                            <div class="avatar-upload-option" style="margin-bottom: 10px;">
+                                <input type="file" id="admin-avatar-file" accept="image/*" style="display: none;">
+                                <button type="button" class="btn-secondary" id="btn-select-avatar-file" style="padding: 6px 12px; font-size: 0.85rem; background-color: #E4D9F5; border: none; border-radius: 6px; cursor: pointer;">
+                                    <i class="fa-solid fa-image"></i> Subir Foto de Perfil
+                                </button>
+                                <span id="avatar-file-name" style="font-size: 0.8rem; margin-left: 10px; color: #666;">Sin archivo seleccionado</span>
+                            </div>
+
+                            <input type="text" id="admin-avatar" placeholder="Avatar seleccionado..." required readonly style="background-color: #F9F6FC; font-weight: bold; text-align: center; font-size: 1.1rem; border: 1.5px solid #E4D9F5; padding: 8px; border-radius: 8px; width: 100%; margin-bottom: 8px;">
+                            
+                            <span style="font-size: 0.8rem; color: #745F9E; font-weight: bold; display: block; margin-bottom: 5px;">O elige un avatar rápido:</span>
                             <div class="avatar-selector-grid" id="admin-avatar-gallery">
                                 <span class="avatar-option" title="Abuelita">👵🏼</span>
                                 <span class="avatar-option" title="Abuelito">👴🏼</span>
@@ -247,12 +255,12 @@
                                 <span class="avatar-option" title="Angelito">👼🏼</span>
                                 <span class="avatar-option" title="Perrito">🐶</span>
                                 <span class="avatar-option" title="Gatito">🐱</span>
-                                <span class="avatar-option" title="Estrella / Memorial">⭐</span>
+                                <span class="avatar-option" title="Estrella">⭐</span>
                             </div>
                         </div>
                         <div>
                             <label for="admin-frase">Frase especial:</label>
-                            <input type="text" id="admin-frase" placeholder="Ej. Te amamos siempre..." required>
+                            <input type="text" id="admin-frase" placeholder="Ej. Te amamos siempre..." required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
                         </div>
                     </div>
                     <div class="form-row">
