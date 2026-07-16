@@ -134,8 +134,8 @@ async function unlockSantuario(santuarioId) {
         const cleanUrl = window.location.origin + window.location.pathname + `?id=${santuario.id}`;
         new QRCode(santuarioQrContainer, {
             text: cleanUrl,
-            width: 250,
-            height: 250,
+            width: 140,
+            height: 140,
             colorDark: "#4A3E3D",
             colorLight: "#ffffff"
         });
@@ -232,8 +232,8 @@ if (createSantuarioForm) {
                 adminQrcodeDiv.innerHTML = "";
                 new QRCode(adminQrcodeDiv, {
                     text: accessUrl,
-                    width: 150,
-                    height: 150
+                    width: 190,
+                    height: 190
                 });
 
                 qrResultSection.style.display = 'block';
