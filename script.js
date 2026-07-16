@@ -255,21 +255,32 @@ if(memoryForm) {
         const title = document.getElementById('title').value;
         const content = document.getElementById('content').value;
 
+        // Formateamos una fecha bonita y legible como texto
+        const fechaActual = new Date().toLocaleDateString('es-PE', {
+            day: 'numeric',
+            month: 'short'
+        }); // Guardará algo como "16 jul."
+
         if (databaseClient) {
             try {
-                // Inserta directamente en la tabla 'recuerdos' de Supabase
+                // Inserta directamente en la tabla 'recuerdos'
                 const { data, error } = await databaseClient
                     .from('recuerdos')
                     .insert([
-                        { tipo: type, titulo: title, url_contenido: content, fecha: 'Hace un momento' }
+                        { 
+                            tipo: type, 
+                            titulo: title, 
+                            url_contenido: content, 
+                            fecha: fechaActual // Enviamos la fecha limpia como texto
+                        }
                     ])
-                    .select(); // El .select() obliga a Supabase a confirmar el registro
+                    .select();
 
                 if (error) throw error;
                 
                 alert("¡Recuerdo guardado con éxito en tu base de datos de Supabase!");
             } catch (err) {
-                alert("Ocurrió un error al intentar guardar en Supabase. Revisa las políticas RLS.");
+                alert("Ocurrió un error al intentar guardar en Supabase. Revisa que el tipo de columna 'fecha' en Supabase sea 'text' y tengas activa la política RLS.");
                 console.error("Error al insertar en Supabase:", err);
             }
         } else {
@@ -281,8 +292,3 @@ if(memoryForm) {
         modal.style.display = 'none';
     });
 }
-
-// Carga Inicial (Santuario bloqueado por defecto)
-window.onload = () => {
-    renderMemories('todos');
-};
