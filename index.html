@@ -222,9 +222,26 @@
                     </div>
                     <div class="form-row">
                         <div>
-                            <label for="admin-avatar">Avatar (Emoji):</label>
-                            <input type="text" id="admin-avatar" placeholder="Ej. 👵" required>
+                            <label for="admin-avatar-type">Tipo de Avatar:</label>
+                             select id="admin-avatar-type" onchange="toggleAvatarInput()">
+                                <option value="emoji">Elegir Emoji</option>
+                                <option value="imagen">Subir Imagen Personalizada</option>
+                            </select>
                         </div>
+                        <div id="avatar-emoji-group">
+                            <label for="admin-avatar">Elegir Emoji:</label>
+                            <select id="admin-avatar-select">
+                                <option value="👵">👵</option>
+                                <option value="👴">👴</option>
+                                <option value="🧸">🧸</option>
+                                <option value="✨">✨</option>
+                            </select>
+                        </div>
+                        <div id="avatar-file-group" style="display:none;">
+                            <label for="admin-avatar-file">Subir Foto:</label>
+                            <input type="file" id="admin-avatar-file" accept="image/*">
+                        </div>
+                    </div>
                         <div>
                             <label for="admin-frase">Frase especial:</label>
                             <input type="text" id="admin-frase" placeholder="Ej. Te amamos siempre..." required>
