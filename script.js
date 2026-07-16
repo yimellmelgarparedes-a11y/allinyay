@@ -204,27 +204,60 @@ if (adminLoginForm) {
         adminLoginForm.reset();
     });
 }
-// Interacción de Selección de Avatares en el Panel de Administración
-document.addEventListener('DOMContentLoaded', () => {
-    const adminAvatarInput = document.getElementById('admin-avatar');
-    const avatarGallery = document.getElementById('admin-avatar-gallery');
+// ==========================================
+// SELECCIÓN DE AVATARES (EMOJI O ARCHIVO FOTO) Y QR GRANDE
+// ==========================================
+const adminAvatarInput = document.getElementById('admin-avatar');
+const avatarGallery = document.getElementById('admin-avatar-gallery');
+const btnSelectAvatarFile = document.getElementById('btn-select-avatar-file');
+const adminAvatarFile = document.getElementById('admin-avatar-file');
+const avatarFileName = document.getElementById('avatar-file-name');
 
-    if (avatarGallery && adminAvatarInput) {
+// 1. Manejo de clics en la galería de emojis
+if (avatarGallery && adminAvatarInput) {
+    avatarGallery.addEventListener('click', (e) => {
+        const option = e.target.closest('.avatar-option');
+        if (!option) return;
+
+        // Deseleccionar los otros emojis
         const options = avatarGallery.querySelectorAll('.avatar-option');
+        options.forEach(opt => opt.classList.remove('selected'));
+
+        // Seleccionar este emoji
+        option.classList.add('selected');
+
+        // Poner el emoji en el input de texto principal
+        adminAvatarInput.value = option.innerText;
         
-        options.forEach(option => {
-            option.addEventListener('click', () => {
-                // Remover la clase "selected" de cualquier otro avatar previamente seleccionado
+        // Limpiar archivo subido si se prefiere un emoji
+        if (adminAvatarFile) adminAvatarFile.value = "";
+        if (avatarFileName) avatarFileName.innerText = "Sin archivo seleccionado";
+    });
+}
+
+// 2. Manejo de subida de archivos (Foto de perfil real)
+if (btnSelectAvatarFile && adminAvatarFile) {
+    btnSelectAvatarFile.addEventListener('click', () => {
+        adminAvatarFile.click();
+    });
+
+    adminAvatarFile.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            // Mostrar nombre del archivo en la interfaz
+            avatarFileName.innerText = file.name;
+            
+            // Ponemos una indicación en el input para el registro de base de datos
+            adminAvatarInput.value = "📸 Foto de perfil personalizada";
+            
+            // Deseleccionar emojis visualmente
+            if (avatarGallery) {
+                const options = avatarGallery.querySelectorAll('.avatar-option');
                 options.forEach(opt => opt.classList.remove('selected'));
-                
-                // Aplicar clase visual seleccionada al elemento actual
-                option.classList.add('selected');
-                
-                // Rellenar el input de texto con el avatar (emoji) elegido
-                adminAvatarInput.value = option.innerText;
-            });
-        });
-    }
+            }
+        }
+    });
+}
 });
 // Crear un nuevo perfil de Santuario en Supabase
 if (createSantuarioForm) {
@@ -251,11 +284,17 @@ if (createSantuarioForm) {
                 adminGeneratedLink.innerText = accessUrl;
 
                 adminQrcodeDiv.innerHTML = "";
-                new QRCode(adminQrcodeDiv, {
-                    text: accessUrl,
-                    width: 150,
-                    height: 150
-                });
+                // Crear QR nítido y grande
+const qrcodeContainer = document.getElementById("admin-qrcode");
+qrcodeContainer.innerHTML = ""; // Limpiar códigos QR previos
+new QRCode(qrcodeContainer, {
+    text: link,
+    width: 256,   // Aumentado a 256 píxeles para excelente impresión
+    height: 256,  // Aumentado a 256 píxeles
+    colorDark: "#4A3E3D",
+    colorLight: "#FFFFFF",
+    correctLevel: QRCode.CorrectLevel.H
+});
 
                 qrResultSection.style.display = 'block';
                 alert("¡Perfil de Santuario creado correctamente en la base de datos!");
