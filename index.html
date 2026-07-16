@@ -90,20 +90,21 @@
                 
                 <div class="santuario-header">
                     <div class="santuario-title">
-                        <i class="fa-solid fa-lock-open"></i>
+                        <i class="fa-solid fa-lock" id="santuario-lock-icon" style="color: #4A3E3D;"></i>
                         <div>
-                            <h3>Tu Santuario Digital</h3>
-                            <p>Un espacio privado para tus recuerdos más preciados.</p>
+                            <h3 id="santuario-display-title">Santuario Privado</h3>
+                            <p id="santuario-display-subtitle">Por favor, inicia sesión para ver este santuario.</p>
                         </div>
                     </div>
-                    <button class="btn-primary" id="btn-add-memory"><i class="fa-solid fa-plus"></i> Añadir Recuerdo</button>
+                    <button class="btn-primary" id="btn-add-memory" style="display: none;"><i class="fa-solid fa-plus"></i> Añadir Recuerdo</button>
                 </div>
 
-                <div class="santuario-body">
+                <!-- El cuerpo del santuario iniciará "oculto" (con opacidad baja) hasta que se ingrese la clave -->
+                <div class="santuario-body" id="santuario-body-content" style="opacity: 0.2; pointer-events: none;">
                     <aside class="santuario-sidebar">
                         <div class="profile-area">
-                            <div class="avatar">👵</div>
-                            <h4>Juanita (Abuelita)</h4>
+                            <div class="avatar" id="santuario-avatar">🔒</div>
+                            <h4 id="santuario-profile-name">Santuario Protegido</h4>
                         </div>
                         <nav class="sidebar-nav">
                             <button class="active" id="btn-filter-todos"><i class="fa-solid fa-house"></i> Inicio</button>
@@ -124,7 +125,7 @@
 
                     <main class="santuario-content">
                         <div class="emotional-banner">
-                            <p>"Los recuerdos que guardamos en el corazón, nunca se pierden. ♡"</p>
+                            <p id="santuario-phrase">"Los recuerdos que guardamos en el corazón, nunca se pierden. ♡"</p>
                         </div>
 
                         <div class="memories-section">
@@ -137,16 +138,14 @@
                         <div class="santuario-footer-info">
                             <div class="dates-box">
                                 <h4>Fechas importantes</h4>
-                                <ul>
-                                    <li><i class="fa-solid fa-calendar"></i> 15 de Agosto - Nacimiento</li>
-                                    <li><i class="fa-solid fa-calendar"></i> 02 de Noviembre - Día de Difuntos</li>
+                                <ul id="santuario-dates">
+                                    <li><i class="fa-solid fa-calendar"></i> Inicia sesión para ver fechas</li>
                                 </ul>
                             </div>
                             <div class="family-box">
                                 <h4>Familia con acceso</h4>
-                                <ul>
-                                    <li>👤 María (Familiar) <span class="badge">Acceso</span></li>
-                                    <li>👤 Carlos (Familiar) <span class="badge">Acceso</span></li>
+                                <ul id="santuario-family">
+                                    <li>👤 Acceso restringido</li>
                                 </ul>
                             </div>
                         </div>
@@ -156,7 +155,22 @@
         </section>
     </main>
 
-    <!-- VENTANA MODAL INTERACTIVA -->
+    <!-- MODAL 1: INICIO DE SESIÓN AL SANTUARIO (NUEVO) -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-login-modal">&times;</span>
+            <h3>Ingresar al Santuario Digital</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 15px; color: #666;">Introduce el código de acceso exclusivo que viene con tu amigurumi ALLINYAY.</p>
+            <form id="login-form">
+                <label for="login-password">Código o Contraseña del Amigurumi:</label>
+                <input type="password" id="login-password" placeholder="Ej. juanita123" required>
+                <p style="font-size: 0.8rem; color: #8E7AB5;">Tip de prueba: Usa el código <strong>juanita123</strong> para desbloquear.</p>
+                <button type="submit" class="btn-primary">Ingresar al Santuario</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: AÑADIR NUEVO RECUERDO -->
     <div class="modal" id="memory-modal">
         <div class="modal-content">
             <span class="close-btn" id="close-modal">&times;</span>
@@ -164,15 +178,15 @@
             <form id="memory-form">
                 <label for="type">Tipo de recuerdo:</label>
                 <select id="type" required>
-                    <option value="foto">Foto</option>
+                    <option value="foto">Foto (Copia enlace de imagen)</option>
                     <option value="video">Video</option>
                     <option value="audio">Audio</option>
                     <option value="mensaje">Mensaje</option>
                 </select>
                 <label for="title">Título:</label>
                 <input type="text" id="title" placeholder="Ej. Tarde de risas en el parque" required>
-                <label for="content">Mensaje o Enlace del Recuerdo:</label>
-                <textarea id="content" placeholder="Escribe un pensamiento hermoso o pega un enlace..." required></textarea>
+                <label for="content" id="label-content">Enlace de la imagen o pensamiento:</label>
+                <textarea id="content" placeholder="Si es Foto, pega un enlace que termine en .jpg, .png. Si es mensaje, escribe tu texto..." required></textarea>
                 <button type="submit" class="btn-primary">Subir al Santuario</button>
             </form>
         </div>
@@ -185,9 +199,9 @@
         <div class="footer-badge"><i class="fa-solid fa-hands-holding"></i> Experiencia significativa</div>
     </footer>
 
-    <!-- SDK de Supabase desde internet -->
+    <!-- SDK de Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- Tu archivo de lógica local -->
+    <!-- Script de lógica local -->
     <script src="script.js"></script>
 </body>
 </html>
