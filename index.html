@@ -9,26 +9,38 @@
 </head>
 <body>
     <header class="navbar">
-        <div class="logo">
-            <i class="fa-solid fa-heart-pulse"></i> 
-            <div><h1>ALLINYAY</h1><p>Amigurumi con alma</p></div>
-        </div>
+        <div class="logo"><h1>ALLINYAY</h1><p>Amigurumi con alma</p></div>
         <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#nosotros">Conócenos</a>
+            <a href="#productos">Productos</a>
             <button id="btn-open-admin"><i class="fa-solid fa-user-gear"></i> Admin</button>
-            <button id="btn-acceso-santuario"><i class="fa-solid fa-lock"></i> Entrar</button>
+            <button id="btn-acceso-santuario"><i class="fa-solid fa-lock"></i> Entrar al Santuario</button>
         </nav>
     </header>
 
     <main class="main-content">
-        <section class="card-display">
+        <section id="nosotros" class="seccion-info">
+            <h2>Nuestra Historia</h2>
+            <p>Más de 5 años tejiendo recuerdos con dedicación.</p>
+            <h2>Misión y Valores</h2>
+            <p>Transformar hilos en emociones. Calidez, dedicación y compromiso.</p>
+            <a href="https://wa.me/51999999999" class="whatsapp-btn"><i class="fa-brands fa-whatsapp"></i> Contáctanos</a>
+        </section>
+
+        <section id="productos" class="seccion-info">
+            <h2>Nuestros Productos</h2>
+            <p>Amigurumis tejidos a mano, personalizados y con alma.</p>
+        </section>
+
+        <section class="card-display" id="santuario">
             <div id="santuario-avatar-container" class="avatar-view">🔒</div>
             <h2 id="santuario-display-title">Santuario Privado</h2>
-            <div id="santuario-body-content" class="content-body">
-                <div id="memories-container"></div>
-            </div>
+            <div id="santuario-body-content"><div id="memories-container"></div></div>
         </section>
     </main>
 
+    <!-- Modal Admin -->
     <div id="admin-modal" class="modal">
         <div class="modal-box">
             <div id="admin-login-view">
@@ -42,7 +54,6 @@
                     <div class="avatar-picker">
                         <button type="button" onclick="setAvatar('👴')">👴</button>
                         <button type="button" onclick="setAvatar('👵')">👵</button>
-                        <button type="button" onclick="setAvatar('👶')">👶</button>
                     </div>
                     <input type="file" id="admin-avatar-file" accept="image/*">
                     <input type="hidden" id="selected-avatar-val" value="👴">
@@ -51,7 +62,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
