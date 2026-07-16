@@ -9,7 +9,6 @@
 </head>
 <body>
 
-    <!-- BARRA DE NAVEGACIÓN -->
     <header class="navbar">
         <div class="logo">
             <i class="fa-solid fa-heart-pulse"></i> 
@@ -32,10 +31,8 @@
         </div>
     </header>
 
-    <!-- CONTENEDOR PRINCIPAL -->
     <main class="main-container">
         
-        <!-- COLUMNA IZQUIERDA: LANDING PAGE -->
         <section class="left-column" id="inicio">
             <div class="hero-text">
                 <h2>Honramos recuerdos, <br><span class="highlight">tejemos eternidad. ♡</span></h2>
@@ -84,7 +81,6 @@
             </div>
         </section>
 
-        <!-- COLUMNA DERECHA: SANTUARIO DIGITAL INTERACTIVO -->
         <section class="right-column" id="santuario">
             <div class="santuario-box">
                 
@@ -99,7 +95,6 @@
                     <button class="btn-primary" id="btn-add-memory" style="display: none;"><i class="fa-solid fa-plus"></i> Añadir Recuerdo</button>
                 </div>
 
-                <!-- El cuerpo del santuario iniciará "oculto" (con opacidad baja) hasta que se ingrese la clave -->
                 <div class="santuario-body" id="santuario-body-content" style="opacity: 0.2; pointer-events: none;">
                     <aside class="santuario-sidebar">
                         <div class="profile-area">
@@ -131,8 +126,7 @@
                         <div class="memories-section">
                             <h3>Últimos recuerdos</h3>
                             <div class="memories-grid" id="memories-container">
-                                <!-- Se cargarán mediante script.js -->
-                            </div>
+                                </div>
                         </div>
 
                         <div class="santuario-footer-info">
@@ -155,7 +149,6 @@
         </section>
     </main>
 
-    <!-- MODAL 1: INICIO DE SESIÓN AL SANTUARIO (NUEVO) -->
     <div class="modal" id="login-modal">
         <div class="modal-content">
             <span class="close-btn" id="close-login-modal">&times;</span>
@@ -170,7 +163,6 @@
         </div>
     </div>
 
-    <!-- MODAL 2: AÑADIR NUEVO RECUERDO -->
     <div class="modal" id="memory-modal">
         <div class="modal-content">
             <span class="close-btn" id="close-modal">&times;</span>
@@ -178,30 +170,37 @@
             <form id="memory-form">
                 <label for="type">Tipo de recuerdo:</label>
                 <select id="type" required>
-                    <option value="foto">Foto (Copia enlace de imagen)</option>
+                    <option value="foto">Foto</option>
                     <option value="video">Video</option>
                     <option value="audio">Audio</option>
-                    <option value="mensaje">Mensaje</option>
+                    <option value="mensaje">Mensaje (Solo texto)</option>
                 </select>
+
                 <label for="title">Título:</label>
-                <input type="text" id="title" placeholder="Ej. Tarde de risas en el parque" required>
-                <label for="content" id="label-content">Enlace de la imagen o pensamiento:</label>
-                <textarea id="content" placeholder="Si es Foto, pega un enlace que termine en .jpg, .png. Si es mensaje, escribe tu texto..." required></textarea>
-                <button type="submit" class="btn-primary">Subir al Santuario</button>
+                <input type="text" id="title" placeholder="Ej. Almuerzo del domingo" required>
+
+                <div id="file-upload-group">
+                    <label for="file-input" id="label-file">Seleccionar archivo (Imagen, Audio o Video):</label>
+                    <input type="file" id="file-input" accept="image/*,video/*,audio/*">
+                </div>
+
+                <div id="text-message-group" style="display: none;">
+                    <label for="content">Escribe tu pensamiento o mensaje:</label>
+                    <textarea id="content" placeholder="Escribe aquí unas palabras bonitas..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary" id="btn-submit-memory">Subir al Santuario</button>
             </form>
         </div>
     </div>
 
-    <!-- PIE DE PÁGINA -->
     <footer class="main-footer">
         <div class="footer-badge"><i class="fa-solid fa-headset"></i> Atención personalizada</div>
         <div class="footer-badge"><i class="fa-solid fa-truck"></i> Envíos a todo el Perú</div>
         <div class="footer-badge"><i class="fa-solid fa-hands-holding"></i> Experiencia significativa</div>
     </footer>
 
-    <!-- SDK de Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- Script de lógica local -->
     <script src="script.js"></script>
 </body>
 </html>
