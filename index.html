@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALLINYAY - Amigurumi con Alma</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Librería para generar códigos QR dinámicos en el Panel Admin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
-    <!-- BARRA DE NAVEGACIÓN -->
     <header class="navbar">
         <div class="logo">
             <i class="fa-solid fa-heart-pulse"></i> 
@@ -34,10 +32,8 @@
         </div>
     </header>
 
-    <!-- CONTENEDOR PRINCIPAL -->
     <main class="main-container">
         
-        <!-- COLUMNA IZQUIERDA: LANDING PAGE -->
         <section class="left-column" id="inicio">
             <div class="hero-text">
                 <h2>Honramos recuerdos, <br><span class="highlight">tejemos eternidad. ♡</span></h2>
@@ -86,7 +82,6 @@
             </div>
         </section>
 
-        <!-- COLUMNA DERECHA: SANTUARIO DIGITAL INTERACTIVO -->
         <section class="right-column" id="santuario">
             <div class="santuario-box">
                 
@@ -132,8 +127,7 @@
                         <div class="memories-section">
                             <h3>Últimos recuerdos</h3>
                             <div class="memories-grid" id="memories-container">
-                                <!-- Se cargarán mediante script.js -->
-                            </div>
+                                </div>
                         </div>
 
                         <div class="santuario-footer-info">
@@ -156,7 +150,6 @@
         </section>
     </main>
 
-    <!-- MODAL 1: INICIO DE SESIÓN -->
     <div class="modal" id="login-modal">
         <div class="modal-content">
             <span class="close-btn" id="close-login-modal">&times;</span>
@@ -170,7 +163,6 @@
         </div>
     </div>
 
-    <!-- MODAL 2: AÑADIR NUEVO RECUERDO -->
     <div class="modal" id="memory-modal">
         <div class="modal-content">
             <span class="close-btn" id="close-modal">&times;</span>
@@ -178,9 +170,9 @@
             <form id="memory-form">
                 <label for="type">Tipo de recuerdo:</label>
                 <select id="type" required>
-                    <option value="foto">Foto</option>
-                    <option value="video">Video</option>
-                    <option value="audio">Audio</option>
+                    <option value="foto">Foto (Sube archivo)</option>
+                    <option value="video">Video (Sube archivo)</option>
+                    <option value="audio">Audio (Sube archivo)</option>
                     <option value="mensaje">Mensaje (Solo texto)</option>
                 </select>
 
@@ -202,13 +194,11 @@
         </div>
     </div>
 
-    <!-- MODAL 3: PANEL DE ADMINISTRACIÓN (NUEVO) -->
     <div class="modal" id="admin-modal">
         <div class="modal-content admin-modal-content">
             <span class="close-btn" id="close-admin-modal">&times;</span>
             <h3>Panel de Control - ALLINYAY</h3>
             
-            <!-- Login de Administrador -->
             <div id="admin-login-section">
                 <p>Por favor, introduce la clave de administrador para continuar.</p>
                 <form id="admin-login-form">
@@ -217,7 +207,6 @@
                 </form>
             </div>
 
-            <!-- Formularios de Administración -->
             <div id="admin-dashboard-section" style="display: none;">
                 <h4>Crear un nuevo Amigurumi con Santuario</h4>
                 <form id="create-santuario-form">
@@ -264,7 +253,6 @@
         </div>
     </div>
 
-    <!-- VISOR DE PANTALLA COMPLETA (LIGHTBOX) -->
     <div id="lightbox-visor" class="lightbox">
         <span class="lightbox-close" id="close-lightbox">&times;</span>
         <div class="lightbox-content-wrapper">
@@ -273,14 +261,12 @@
         </div>
     </div>
 
-    <!-- PIE DE PÁGINA -->
     <footer class="main-footer">
         <div class="footer-badge"><i class="fa-solid fa-headset"></i> Atención personalizada</div>
         <div class="footer-badge"><i class="fa-solid fa-truck"></i> Envíos a todo el Perú</div>
         <div class="footer-badge"><i class="fa-solid fa-hands-holding"></i> Experiencia significativa</div>
     </footer>
 
-    <!-- SDK de Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
