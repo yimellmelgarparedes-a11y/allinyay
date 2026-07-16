@@ -134,8 +134,8 @@ async function unlockSantuario(santuarioId) {
         const cleanUrl = window.location.origin + window.location.pathname + `?id=${santuario.id}`;
         new QRCode(santuarioQrContainer, {
             text: cleanUrl,
-            width: 80,
-            height: 80,
+            width: 250,
+            height: 250,
             colorDark: "#4A3E3D",
             colorLight: "#ffffff"
         });
@@ -543,7 +543,11 @@ if (memoryForm) {
         textMessageGroup.style.display = 'none';
     });
 }
-
+function toggleAvatarInput() {
+    const type = document.getElementById('admin-avatar-type').value;
+    document.getElementById('avatar-emoji-group').style.display = type === 'emoji' ? 'block' : 'none';
+    document.getElementById('avatar-file-group').style.display = type === 'imagen' ? 'block' : 'none';
+}
 // Filtros de navegación lateral
 function clearActiveFilterButtons() {
     const buttons = document.querySelectorAll('.sidebar-nav button');
