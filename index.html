@@ -6,9 +6,12 @@
     <title>ALLINYAY - Amigurumi con Alma</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Librería para generar códigos QR dinámicos en el Panel Admin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
+    <!-- BARRA DE NAVEGACIÓN -->
     <header class="navbar">
         <div class="logo">
             <i class="fa-solid fa-heart-pulse"></i> 
@@ -20,8 +23,8 @@
         <nav class="nav-links">
             <a href="#inicio">Inicio</a>
             <a href="#nosotros">Sobre Nosotros</a>
-            <a href="#funciona">Cómo Funciona</a>
             <a href="#santuario">Santuario Digital</a>
+            <button class="btn-admin-nav" id="btn-open-admin"><i class="fa-solid fa-user-gear"></i> Panel Admin</button>
         </nav>
         <div class="nav-buttons">
             <button class="btn-secondary" id="btn-acceso-santuario"><i class="fa-solid fa-lock"></i> Acceso a tu Santuario</button>
@@ -31,8 +34,10 @@
         </div>
     </header>
 
+    <!-- CONTENEDOR PRINCIPAL -->
     <main class="main-container">
         
+        <!-- COLUMNA IZQUIERDA: LANDING PAGE -->
         <section class="left-column" id="inicio">
             <div class="hero-text">
                 <h2>Honramos recuerdos, <br><span class="highlight">tejemos eternidad. ♡</span></h2>
@@ -81,6 +86,7 @@
             </div>
         </section>
 
+        <!-- COLUMNA DERECHA: SANTUARIO DIGITAL INTERACTIVO -->
         <section class="right-column" id="santuario">
             <div class="santuario-box">
                 
@@ -111,10 +117,10 @@
                         
                         <div class="qr-section">
                             <p>Código QR de este Santuario</p>
-                            <div class="qr-code">
+                            <div class="qr-code" id="santuario-qr-container">
                                 <i class="fa-solid fa-qrcode"></i>
                             </div>
-                            <span>Escanea para acceder a este espacio privado.</span>
+                            <span>Escanea para acceder directamente a este espacio.</span>
                         </div>
                     </aside>
 
@@ -126,7 +132,8 @@
                         <div class="memories-section">
                             <h3>Últimos recuerdos</h3>
                             <div class="memories-grid" id="memories-container">
-                                </div>
+                                <!-- Se cargarán mediante script.js -->
+                            </div>
                         </div>
 
                         <div class="santuario-footer-info">
@@ -149,6 +156,7 @@
         </section>
     </main>
 
+    <!-- MODAL 1: INICIO DE SESIÓN -->
     <div class="modal" id="login-modal">
         <div class="modal-content">
             <span class="close-btn" id="close-login-modal">&times;</span>
@@ -157,12 +165,12 @@
             <form id="login-form">
                 <label for="login-password">Código o Contraseña del Amigurumi:</label>
                 <input type="password" id="login-password" placeholder="Ej. juanita123" required>
-                <p style="font-size: 0.8rem; color: #8E7AB5;">Tip de prueba: Usa el código <strong>juanita123</strong> para desbloquear.</p>
                 <button type="submit" class="btn-primary">Ingresar al Santuario</button>
             </form>
         </div>
     </div>
 
+    <!-- MODAL 2: AÑADIR NUEVO RECUERDO -->
     <div class="modal" id="memory-modal">
         <div class="modal-content">
             <span class="close-btn" id="close-modal">&times;</span>
@@ -180,7 +188,7 @@
                 <input type="text" id="title" placeholder="Ej. Almuerzo del domingo" required>
 
                 <div id="file-upload-group">
-                    <label for="file-input" id="label-file">Seleccionar archivo (Imagen, Audio o Video):</label>
+                    <label for="file-input" id="label-file">Seleccionar archivo:</label>
                     <input type="file" id="file-input" accept="image/*,video/*,audio/*">
                 </div>
 
@@ -194,12 +202,85 @@
         </div>
     </div>
 
+    <!-- MODAL 3: PANEL DE ADMINISTRACIÓN (NUEVO) -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content admin-modal-content">
+            <span class="close-btn" id="close-admin-modal">&times;</span>
+            <h3>Panel de Control - ALLINYAY</h3>
+            
+            <!-- Login de Administrador -->
+            <div id="admin-login-section">
+                <p>Por favor, introduce la clave de administrador para continuar.</p>
+                <form id="admin-login-form">
+                    <input type="password" id="admin-password" placeholder="Clave de administrador" required>
+                    <button type="submit" class="btn-primary">Validar</button>
+                </form>
+            </div>
+
+            <!-- Formularios de Administración -->
+            <div id="admin-dashboard-section" style="display: none;">
+                <h4>Crear un nuevo Amigurumi con Santuario</h4>
+                <form id="create-santuario-form">
+                    <div class="form-row">
+                        <div>
+                            <label for="admin-santuario-id">Código único (ID):</label>
+                            <input type="text" id="admin-santuario-id" placeholder="Ej. juanita123" required>
+                        </div>
+                        <div>
+                            <label for="admin-nombre">Nombre del Homenajeado:</label>
+                            <input type="text" id="admin-nombre" placeholder="Ej. Juanita (Abuelita)" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label for="admin-avatar">Avatar (Emoji):</label>
+                            <input type="text" id="admin-avatar" placeholder="Ej. 👵" required>
+                        </div>
+                        <div>
+                            <label for="admin-frase">Frase especial:</label>
+                            <input type="text" id="admin-frase" placeholder="Ej. Te amamos siempre..." required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label for="admin-fechas">Fechas Importantes (separadas por comas):</label>
+                            <input type="text" id="admin-fechas" placeholder="Ej. 15 Ago - Nacimiento, 02 Nov - Memorial" required>
+                        </div>
+                        <div>
+                            <label for="admin-familia">Familia Autorizada (separadas por comas):</label>
+                            <input type="text" id="admin-familia" placeholder="Ej. María (Hija), Carlos (Nieto)" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Registrar y Generar QR</button>
+                </form>
+
+                <div id="qr-result-section" style="display: none; text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+                    <h5>¡Santuario Creado con Éxito!</h5>
+                    <p>Enlace de acceso: <span id="admin-generated-link" style="font-weight: bold; color: #8E7AB5;"></span></p>
+                    <div id="admin-qrcode" style="display: flex; justify-content: center; margin: 15px 0;"></div>
+                    <p style="font-size: 0.85rem; color: #666;">Guarda o imprime este código QR para colocarlo en la etiqueta del Amigurumi físico.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VISOR DE PANTALLA COMPLETA (LIGHTBOX) -->
+    <div id="lightbox-visor" class="lightbox">
+        <span class="lightbox-close" id="close-lightbox">&times;</span>
+        <div class="lightbox-content-wrapper">
+            <img id="lightbox-img" src="" style="display: none;">
+            <video id="lightbox-video" src="" controls style="display: none;"></video>
+        </div>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
     <footer class="main-footer">
         <div class="footer-badge"><i class="fa-solid fa-headset"></i> Atención personalizada</div>
         <div class="footer-badge"><i class="fa-solid fa-truck"></i> Envíos a todo el Perú</div>
         <div class="footer-badge"><i class="fa-solid fa-hands-holding"></i> Experiencia significativa</div>
     </footer>
 
+    <!-- SDK de Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
